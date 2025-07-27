@@ -1,0 +1,16 @@
+#### Java Project with Selenium Framework
+
+## This is a small repository created to get familiar with automation of Java and Selenium.
+##  Selenium WebDriver uses to automate browser actions like clicking, typying the text.
+##  We can use this to test real browser as Chrome
+
+# Some useful information:
+# It is possible to run this project on Windows. It is useful to use eg. Chocelaty to install maven on Windows.
+    choco install mvn
+
+# Test can be run with command in dicrectory which contains pom.xml file:
+    mvn test
+
+# If it is neceassery to run only one test you can use command:
+    mvn -Dtest=tests.GoogleSearchTest test
+
