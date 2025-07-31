@@ -1,79 +1,68 @@
 package tests;
 
-import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.AfterEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SearchTest {
 
     private WebDriver driver;
-
-    void findElement() {
-        WebElement searchBox = driver.findElement(By.name("q"));
-        searchBox.sendKeys("Selenium WebDriver");
-        searchBox.submit();
-    }
+    private SearchPage searchPage;
 
     @BeforeEach
     public void setup() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup(); 
         driver = new ChromeDriver();
+        searchPage = new SearchPage(driver);
     }
 
     @Test
     public void testBingSearch() {
         driver.get("https://www.bing.com");
-
-        findElement();
-
-        assertEquals(driver.getTitle().contains("Selenium WebDriver"), driver.getTitle().contains("Selenium WebDriver"));
-        assertTrue(driver.getTitle().contains("Selenium WebDriver")); 
+        searchPage.searchFor("Selenium WebDriver");
+        searchPage.waitForTitleToContain("Selenium WebDriver");
     }
 
     @Test
     public void testDuckDuckGoSearch() {
         driver.get("https://duckduckgo.com/");
-
-        findElement();
-
-        // Wait for the results to load (optional, but helps avoid flaky tests)
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.titleContains("Selenium WebDriver"));
-
-        // Assert that the title contains "Selenium WebDriver"
-        String title = driver.getTitle();
-        assertTrue(title.contains("Selenium WebDriver"), "Title should contain 'Selenium WebDriver', but was: " + title);
-
-        assertEquals(driver.getTitle().contains("Selenium WebDriver"), driver.getTitle().contains("Selenium WebDriver"));
+        searchPage.searchFor("Selenium WebDriver");
+        searchPage.waitForTitleToContain("Selenium WebDriver");
     }
 
-    // This test can fail, when Google detects that web browser was used to many times with the same behaviour.
-    // If there is shown 'I'm not a robot' check box, that is not possible to check this security reCAPTCHTA as Google
-    // detects an automated behaviour of Selenium. Only the real humam can get around reCAPTCHA by clicking the checkbox.
+    // Google detects that web browser was used too many times with the same behaviour. Security check reCAPTCHA searchbox is shown
+    // and later reCaptcha shows few photos to choose as Google detects an automated behaviour of Selenium
     @Test
     public void testGoogleSearch() {
         driver.get("https://www.google.com");
 
-        // Accepting Google cookies
-        WebElement acceptCookieButton = driver.findElement(By.id("W0wltc"));
-        acceptCookieButton.click();
+        searchPage.acceptGoogleCookiesIfPresent();
+        searchPage.searchFor("Selenium WebDriver");
+        searchPage.webdriverWait();
 
-        findElement();
+        boolean isRecaptchaPresent = false;
 
-        // uncomment if Test class run only once
-        // assertEquals(driver.getTitle().contains("Selenium WebDriver"), driver.getTitle().contains("Selenium WebDriver"));
+        try {
+            isRecaptchaPresent = driver.findElement(By.id("recaptcha")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            System.out.println("Recaptcha element not found. Proceeding with the test.");
+        }
+
+        if (isRecaptchaPresent) {
+            System.out.println("reCaptcha element found. Skipping the test.");
+            searchPage.testSkipped("Test shipped due to reCaptcha");
+            return;
+        }
+
+        searchPage.searchFor("Selenium WebDriver");
+        searchPage.waitForTitleToContain("Selenium WebDriver");
     }
     
     @AfterEach

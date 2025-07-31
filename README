@@ -1,16 +1,18 @@
-#### Java Project with Selenium Framework
+#### Selenium Web UI Tests (Java + JUnit)
+This repository contains basic automated UI tests using Selenium WebDriver framework.
 
-## This is a small repository created to get familiar with automation of Java and Selenium.
-##  Selenium WebDriver uses to automate browser actions like clicking, typying the text.
-##  We can use this to test real browser as Chrome
+## Project Description
+Selenium WebDriver is used to automated browser actions like opening the browser, finding the element of browser, clicking typying the text to search.
+It is used to test real browser as Chrome.
+This repository was created for learning purposes.
 
-# Some useful information:
-# It is possible to run this project on Windows. It is useful to use eg. Chocelaty to install maven on Windows.
-    choco install mvn
-
-# Test can be run with command in dicrectory which contains pom.xml file:
+## Running the tests
+1. Java JDK and Maven are installed
+   - Unix:
+     sudo apt install maven
+   - Windows (install eg. Chocolatey)
+     choco install mvn
+2. Test can be run with command in directory which contains pom.xml file:
     mvn test
-
-# If it is neceassery to run only one test you can use command:
-    mvn -Dtest=tests.GoogleSearchTest test
-
+3. Maven clean:
+    mvn clean test
