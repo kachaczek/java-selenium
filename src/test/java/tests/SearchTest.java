@@ -57,7 +57,7 @@ public class SearchTest {
 
         if (isRecaptchaPresent) {
             System.out.println("reCaptcha element found. Skipping the test.");
-            searchPage.testSkipped("Test shipped due to reCaptcha");
+            searchPage.assumeTrue("Test shipped due to reCaptcha");
             return;
         }
 

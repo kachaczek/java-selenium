@@ -39,7 +39,7 @@ public class SearchPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void testSkipped(String message) {
+    public void assumeTrue(String message) {
         Assumptions.assumeTrue(false, message);
     }
 }
