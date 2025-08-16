@@ -19,7 +19,7 @@ public class SeleniumDevTest extends BaseTest implements SearchTestHelper {
 
     @Test
     public void testDocumentation() {
-        driver.get("https://www.selenium.dev/documentation/webdriver/");
+        seleniumDevPage.openPage();
         findElementByLinkText(driver, "Documentation").click();
         waitUntilLoaded(driver, "Selenium");
         assumeCondition(true, "Selenium title");
@@ -27,13 +27,20 @@ public class SeleniumDevTest extends BaseTest implements SearchTestHelper {
 
     @Test
     public void testAboutList() {
-        driver.get("https://www.selenium.dev/documentation/webdriver/");
-        WebElement element = driver.findElement(By.id("navbarDropdown"));
+        seleniumDevPage.openPage();
 
+        WebElement element = findElementById(driver, "navbarDropdown");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
 
         waitUntilElementLocated(driver, "Events");
         driver.findElement(By.linkText("Events")).click();
+    }
+
+    @Test
+    public void testGetGettingStarted() {
+        seleniumDevPage.openPage();
+        findElementById(driver, "m-documentationwebdrivergetting_started").click();
+        waitUntilLoaded (driver, "Getting started");
     }
 }

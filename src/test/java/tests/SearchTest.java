@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+
 import pages.SearchPage;
 
 public class SearchTest extends BaseTest implements SearchTestHelper {
@@ -19,7 +20,7 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
     @Test
     public void testBingSearch() {
         driver.get("https://www.bing.com");
-        searchPage.searchFor("Selenium WebDriver");
+        searchAndSendKeys(driver, "q", "Selenium WebDriver");
         waitUntilLoaded(driver, "Selenium WebDriver");
         assumeCondition(true, "Selenium Webdriver title shown");
     }
@@ -27,7 +28,7 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
     @Test
     public void testDuckDuckGoSearch() {
         driver.get("https://duckduckgo.com/");
-        searchPage.searchFor("Selenium WebDriver");
+        searchAndSendKeys(driver, "q", "Selenium WebDriver");
         waitUntilLoaded(driver, "Selenium WebDriver");
         assumeCondition(true, "Selenium Webdriver title shown");
     }
@@ -38,9 +39,8 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
     public void testGoogleSearch() {
         driver.get("https://www.google.com");
 
-        searchPage.acceptGoogleCookiesIfPresent();
-        searchPage.searchFor("Selenium WebDriver");
-
+        searchPage.acceptGoogleCookies();
+        searchAndSendKeys(driver, "q", "Selenium WebDriver");
 
         boolean isRecaptchaPresent = false;
         try {

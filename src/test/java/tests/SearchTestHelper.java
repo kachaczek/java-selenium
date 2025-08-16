@@ -1,12 +1,13 @@
 package tests;
 
+import java.time.Duration;
+
+import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import org.junit.jupiter.api.Assumptions;
 
 public interface SearchTestHelper {
 
@@ -30,8 +31,8 @@ public interface SearchTestHelper {
         return element;
     }
 
-    default void searchFor(WebDriver driver, String query) {
-        WebElement searchBox = driver.findElement(By.name("q"));
+    default void searchAndSendKeys(WebDriver driver, String name, String query) {
+        WebElement searchBox = driver.findElement(By.name(name));
         searchBox.sendKeys(query);
         searchBox.submit();
     }
