@@ -2,9 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-import tests.SearchTestHelper;
-
-public class SearchPage extends BasePage implements SearchTestHelper {
+public class SearchPage extends BasePage {
     
     public SearchPage(WebDriver driver) {
         super(driver);

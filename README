@@ -7,10 +7,9 @@
   finding the element of browser, clicking, typying the text to search.
   It is used to test real browser as Chrome.
   - BaseTest - setup and teardown
-  - SearchTestHelper - helper class with methods, which are used many times
   - SearchTest - JUnit tests: looking for "Selenium WebDriver" in few webbrowsers
   - SeleniumDevTest - JUnit tests: testing Selenium Webdriver web
-  - BasePage - class with driver initialization
+  - BasePage - class with driver initialization and useful methods
   - SearchPage - shows Page Object Pattern: locators, actions
   - pom.xml is a configuration file used by Maven
 
@@ -22,5 +21,7 @@
       choco install mvn
   2. Test can be run with command in directory which contains pom.xml file:
       mvn test
-  3. Maven clean:
+  3. Run test with choosing the browser:
+     mvn test -Dbrowser=firefox
+  4. Maven clean:
       mvn clean test

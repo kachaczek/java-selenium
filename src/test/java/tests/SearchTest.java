@@ -8,7 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import pages.SearchPage;
 
-public class SearchTest extends BaseTest implements SearchTestHelper {
+public class SearchTest extends BaseTest {
 
     private SearchPage searchPage;
 
@@ -20,17 +20,17 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
     @Test
     public void testBingSearch() {
         driver.get("https://www.bing.com");
-        searchAndSendKeys(driver, "q", "Selenium WebDriver");
-        waitUntilLoaded(driver, "Selenium WebDriver");
-        assumeCondition(true, "Selenium Webdriver title shown");
+        searchPage.searchAndSendKeys(driver, "q", "Selenium WebDriver");
+        searchPage.waitUntilLoaded(driver, "Selenium WebDriver");
+        searchPage.assumeCondition(true, "Selenium Webdriver title shown");
     }
 
     @Test
     public void testDuckDuckGoSearch() {
         driver.get("https://duckduckgo.com/");
-        searchAndSendKeys(driver, "q", "Selenium WebDriver");
-        waitUntilLoaded(driver, "Selenium WebDriver");
-        assumeCondition(true, "Selenium Webdriver title shown");
+        searchPage.searchAndSendKeys(driver, "q", "Selenium WebDriver");
+        searchPage.waitUntilLoaded(driver, "Selenium WebDriver");
+        searchPage.assumeCondition(true, "Selenium Webdriver title shown");
     }
 
     // Google detects that web browser was used too many times with the same behaviour. Security check reCAPTCHA searchbox is shown
@@ -40,7 +40,7 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
         driver.get("https://www.google.com");
 
         searchPage.acceptGoogleCookies();
-        searchAndSendKeys(driver, "q", "Selenium WebDriver");
+        searchPage.searchAndSendKeys(driver, "q", "Selenium WebDriver");
 
         boolean isRecaptchaPresent = false;
         try {
@@ -53,8 +53,8 @@ public class SearchTest extends BaseTest implements SearchTestHelper {
         }
 
         if(!isRecaptchaPresent) {
-            waitUntilLoaded(driver, "Selenium WebDriver");
-            assumeCondition(true, "Selenium Webdriver title shown");
+            searchPage.waitUntilLoaded(driver, "Selenium WebDriver");
+            searchPage.assumeCondition(true, "Selenium Webdriver title shown");
         }
     }
 }
