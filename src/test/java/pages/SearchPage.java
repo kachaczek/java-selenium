@@ -14,7 +14,6 @@ public class SearchPage extends BasePage {
     public SearchPage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        
     }
 
     // Accept Google cookies
@@ -27,8 +26,8 @@ public class SearchPage extends BasePage {
     }
 
     public void searchFor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
         searchBox.click();
         searchBox.sendKeys("Selenium WebDriver");
         searchBox.submit();
