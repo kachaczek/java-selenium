@@ -1,12 +1,19 @@
-#### Selenium Web UI Tests (Java + JUnit)
-  This repository contains basic automated UI tests using Selenium WebDriver framework.
-
 ## Project Description
   Selenium WebDriver is used to automated browser actions like opening the browser, finding the element of browser, clicking typying the text to search.
   It is used to test real browser as Chrome.
   This repository was created for learning purposes.
   - SearchTest contains JUnit tests.
   - SearchPage contains methods and shows Page Object Pattern in this repository
+
+## Project Description
+  Selenium WebDriver is used to automated browser actions like opening the browser,
+  finding the element of browser, clicking, typying the text to search.
+  It is used to test real browser as Chrome.
+  - BaseTest - setup and teardown
+  - SearchTest - JUnit tests: looking for "Selenium WebDriver" in few webbrowsers
+  - SeleniumDevTest - JUnit tests: testing Selenium Webdriver web
+  - BasePage - class with driver initialization and useful methods
+  - SearchPage - shows Page Object Pattern: locators, actions
   - pom.xml is a configuration file used by Maven
 
 ## Running the tests
@@ -17,5 +24,7 @@
       choco install mvn
   2. Test can be run with command in directory which contains pom.xml file:
       mvn test
-  3. Maven clean:
+  3. Run test with choosing the Firefox browser:
+     mvn test -Dbrowser=firefox
+  4. Maven clean:
       mvn clean test

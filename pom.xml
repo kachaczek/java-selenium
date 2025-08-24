@@ -21,11 +21,18 @@
             <version>4.20.0</version>
         </dependency>
 
+        <!-- Selenium devtools v138 for Chrome Web Browser v138 -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v138</artifactId>
+            <version>4.34.0</version>
+        </dependency>
+
         <!-- WebDriverManager to handle driver binaries -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.8.0</version>
+            <version>5.7.0</version>
         </dependency>
 
         <!-- JUnit 5 -->
