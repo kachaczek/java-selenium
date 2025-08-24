@@ -18,10 +18,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install browsers
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable firefox
-
-      - name: Run Selenium tests on ${{ matrix.browser }}
-        run: mvn test -Dbrowser=${{ matrix.browser }}
+      - name: Run Selenium tests
+        run: mvn test
