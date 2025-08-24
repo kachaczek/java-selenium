@@ -1,9 +1,0 @@
-      - name: Run tests
-        run: mvn test
-
-      - name: Upload screenshots
-        if: failure()   # only upload if the job fails
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: target/screenshots
