@@ -1,0 +1,31 @@
+name: Selenium Tests
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Pobierz repozytorium
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 2. Zainstaluj JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Zainstaluj przeglądarkę Chrome
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # 4. Uruchom testy (Maven)
+      - name: Run Selenium tests
+        run: mvn test
+
+
