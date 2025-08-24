@@ -2,7 +2,6 @@ package pages;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,47 +15,42 @@ public abstract class BasePage {
         this.driver = driver;
     }
 
-    public void findElementByName(WebDriver driver, String name) {
+    public void findElementByName(String name) {
         driver.findElement(By.name(name));
     }
-    
-    public void searchByName(WebDriver driver, String query, String address) {
-        WebElement element = driver.findElement(By.name(address));
-        element.sendKeys(query);
-        element.submit();
-    }
 
-    public WebElement findElementByLinkText(WebDriver driver, String text) {
+    public WebElement findElementByLinkText(String text) {
         WebElement element = driver.findElement(By.linkText(text));
         return element;
     }
 
-    public WebElement findElementById(WebDriver driver, String text) {
+    public WebElement findElementById(String text) {
         WebElement element = driver.findElement(By.id(text));
         return element;
     }
 
-    public void searchAndSendKeys(WebDriver driver, String name, String query) {
-        WebElement searchBox = driver.findElement(By.name(name));
-        searchBox.sendKeys(query);
-        searchBox.submit();
+    public WebElement findElementByXpath(String text) {
+        WebElement element = driver.findElement(By.xpath(text));
+        return element;
     }
 
-    public void waitUntilLoaded(WebDriver driver, String expectedTitle) {
+    public WebElement findElementByClass(String text) {
+        WebElement element = driver.findElement(By.className(text));
+        return element;
+    }
+
+    public WebElement findElementByCSSSelector(String text) {
+        WebElement element = driver.findElement(By.cssSelector(text));
+        return element;
+    }
+
+    public void waitUntilLoaded(String expectedTitle) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
         .until(ExpectedConditions.titleContains(expectedTitle));
     }
 
-    public void waitUntilElementLocated(WebDriver driver, String text) {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
+    public void waitUntilElementLocated(String text) {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
         .until(ExpectedConditions.visibilityOfElementLocated(By.linkText(text)));
-    }
-
-    public void assumeCondition(boolean condition, String message) {
-        if (condition) {
-            Assumptions.assumeTrue(condition, message);
-        } else {
-            Assumptions.assumeFalse(condition, message);
-        }
     }
 }

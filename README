@@ -21,7 +21,7 @@
       choco install mvn
   2. Test can be run with command in directory which contains pom.xml file:
       mvn test
-  3. Run test with choosing the browser:
+  3. Run test with choosing the Firefox browser:
      mvn test -Dbrowser=firefox
   4. Maven clean:
       mvn clean test

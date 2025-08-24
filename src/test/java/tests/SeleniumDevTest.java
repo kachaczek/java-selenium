@@ -1,12 +1,8 @@
 package tests;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
 import pages.SeleniumDevPage;
+import org.junit.jupiter.api.Assumptions;
 
 public class SeleniumDevTest extends BaseTest {
     
@@ -20,27 +16,24 @@ public class SeleniumDevTest extends BaseTest {
     @Test
     public void testDocumentation() {
         seleniumDevPage.openPage();
-        seleniumDevPage.findElementByLinkText(driver, "Documentation").click();
-        seleniumDevPage.waitUntilLoaded(driver, "Selenium");
-        seleniumDevPage.assumeCondition(true, "Selenium title");
+        seleniumDevPage.clickDocumentation();
+        seleniumDevPage.waitUntilLoaded("Selenium");
+        Assumptions.assumeTrue(true, "Selenium title");
     }
 
     @Test
     public void testAboutList() {
         seleniumDevPage.openPage();
-
-        WebElement element = seleniumDevPage.findElementById(driver, "navbarDropdown");
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", element);
-
-        seleniumDevPage.waitUntilElementLocated(driver, "Events");
-        driver.findElement(By.linkText("Events")).click();
+        seleniumDevPage.clickOnEvents();
+        seleniumDevPage.waitUntilLoaded("Events | Selenium");
+        Assumptions.assumeTrue(true, "Events | Selenium");
     }
 
     @Test
     public void testGetGettingStarted() {
         seleniumDevPage.openPage();
-        seleniumDevPage.findElementById(driver, "m-documentationwebdrivergetting_started").click();
-        seleniumDevPage.waitUntilLoaded (driver, "Getting started");
+        seleniumDevPage.clickGettingStarted();
+        seleniumDevPage.waitUntilLoaded ("Getting started");
+        Assumptions.assumeTrue(true, "Getting started");
     }
 }
