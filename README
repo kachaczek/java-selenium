@@ -12,6 +12,7 @@
   - BaseTest - setup and teardown
   - SearchTest - JUnit tests: looking for "Selenium WebDriver" in few webbrowsers
   - SeleniumDevTest - JUnit tests: testing Selenium Webdriver web
+  - ApiTest - some basic API tests
   - BasePage - class with driver initialization and useful methods
   - SearchPage - shows Page Object Pattern: locators, actions
   - pom.xml is a configuration file used by Maven
