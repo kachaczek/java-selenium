@@ -1,8 +1,14 @@
 package tests;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import pages.SeleniumDevPage;
-import org.junit.jupiter.api.Assumptions;
 
 public class SeleniumDevTest extends BaseTest {
     
@@ -14,6 +20,10 @@ public class SeleniumDevTest extends BaseTest {
     }
 
     @Test
+    @Epic("Web UI Tests")
+    @Feature("Search Engines")
+    @Story("Selenium Webdriver Documentation page")
+    @Severity(SeverityLevel.NORMAL)
     public void testDocumentation() {
         seleniumDevPage.openPage();
         seleniumDevPage.clickDocumentation();
@@ -22,6 +32,10 @@ public class SeleniumDevTest extends BaseTest {
     }
 
     @Test
+    @Epic("Web UI Tests")
+    @Feature("Search Engines")
+    @Story("Selenium WebDriver drop down list")
+    @Severity(SeverityLevel.NORMAL)
     public void testAboutList() {
         seleniumDevPage.openPage();
         seleniumDevPage.clickOnEvents();
@@ -30,6 +44,10 @@ public class SeleniumDevTest extends BaseTest {
     }
 
     @Test
+    @Epic("Web UI Tests")
+    @Feature("Search Engines")
+    @Story("Selenium WebDriver Getting Started page")
+    @Severity(SeverityLevel.NORMAL)
     public void testGetGettingStarted() {
         seleniumDevPage.openPage();
         seleniumDevPage.clickGettingStarted();
