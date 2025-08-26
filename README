@@ -34,3 +34,8 @@
      mvn clean test
      target/allure-results directory will be created and later:
      mvn allure:serve
+     Then go to Github Actions and choose some job, download some report on the
+     bottom of the page eg. allure-report-chrome, unzip and run server:
+     python -m http.server 8080
+     and later open in Firefox:
+     http://localhost:8080
