@@ -29,3 +29,8 @@
      mvn test -Dbrowser=firefox
   4. Maven clean:
       mvn clean test
+  5. Allure reports
+     Please run:
+     mvn clean test
+     target/allure-results directory will be created and later:
+     mvn allure:serve

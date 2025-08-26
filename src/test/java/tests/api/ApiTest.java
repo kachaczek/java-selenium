@@ -5,6 +5,11 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.Test;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
@@ -12,6 +17,10 @@ import io.restassured.response.Response;
 public class ApiTest {
 
     @Test
+    @Epic("Web UI Tests")
+    @Feature("API Tests")
+    @Story("Bing Home Page Status Code")
+    @Severity(SeverityLevel.NORMAL)
     void testBingHomePage() {
         Response response = RestAssured.get("https://www.bing.com")
                 .thenReturn();
@@ -19,18 +28,38 @@ public class ApiTest {
     }
 
     @Test
+    @Epic("Web UI Tests")
+    @Feature("API Tests")
+    @Story("Regres Api response code")
+    @Severity(SeverityLevel.NORMAL)
     void testRegresApi() {
         Response response =
             given()
-                // .queryParam("q", "selenium testing")
-                .queryParam("format", "json")
+            .queryParam("format", "json")
             .when()
-                .get("https://reqres.in/api/users/2")
+            .get("https://reqres.in/api/users/2")
             .then()
-                .statusCode(401)
-                .extract().response();
+            .statusCode(401)
+            .extract().response();
 
         String body = response.getBody().asString();
         assertThat(body, containsString("Missing API key"));
+    }
+
+    @Test
+    @Epic("Web UI Tests")
+    @Feature("API Tests")
+    @Story("GraphQL status code")
+    @Severity(SeverityLevel.NORMAL)
+    void testGraphQLUser() {
+        String query = "{ user(id: 2) { id first_name } }";
+
+        given()
+            .contentType("application/json")
+            .body("{\"query\":\"" + query + "\"}")
+            .when()
+            .post("https://example.com/graphql")
+            .then()
+            .statusCode(403);
     }
 }

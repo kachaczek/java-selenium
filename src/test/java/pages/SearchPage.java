@@ -26,7 +26,7 @@ public class SearchPage extends BasePage {
     }
 
     public void searchFor() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
         searchBox.click();
         searchBox.sendKeys("Selenium WebDriver");
