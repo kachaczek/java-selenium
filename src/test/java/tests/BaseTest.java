@@ -1,16 +1,28 @@
 package tests;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import io.qameta.allure.Allure;
 import pages.SearchPage;
 import pages.SeleniumDevPage;
 
+/**
+ * BaseTest is a class providing setup and teardown for Selenium WebDriver tests.
+ * It initializes the browser driver (Chrome or Firefox), manages browser options,
+ * and creates shared page object instances for use in test classes.
+ */
 public class BaseTest {
     protected WebDriver driver;
     protected SearchPage searchPage;
@@ -38,8 +50,16 @@ public class BaseTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown(TestInfo testInfo) throws IOException {
         if (driver != null) {
+            boolean failed = testInfo.getTags().contains("failed");
+
+            // screenshot will be captured on Test Failure
+            if (failed) {
+                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                Allure.addAttachment("Screenshot on Failure",
+                        new ByteArrayInputStream(screenshot));
+            }
             driver.quit();
         }
     }

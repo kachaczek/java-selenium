@@ -8,6 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * SearchPage encapsulates actions and element interactions for search engine pages (e.g., Bing, DuckDuckGo).
+ * It provides methods to perform searches, wait for results, and interact with search-related elements.
+ * Used by UI test classes to automate search scenarios.
+ */
 public class SearchPage extends BasePage {
     private WebDriverWait wait;
 
@@ -16,20 +21,11 @@ public class SearchPage extends BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Accept Google cookies
-    public void acceptGoogleCookies() {
-        try {
-            findElementById("W0wltc").click();
-        } catch (NoSuchElementException e) {
-            System.out.println("Cookies not found");
-        }
-    }
-
-    public void searchFor() {
+    public void searchFor(String query) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
         searchBox.click();
-        searchBox.sendKeys("Selenium WebDriver");
+        searchBox.sendKeys(query);
         searchBox.submit();
     }
 }
