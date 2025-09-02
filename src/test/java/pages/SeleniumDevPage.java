@@ -8,6 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * SeleniumDevPage encapsulates actions and element interactions for the Selenium documentation website.
+ * It provides methods to open the documentation, click navigation links, interact with dropdowns and
+ * wait for page conditions.
+ */
 public class SeleniumDevPage extends BasePage {
 
     public SeleniumDevPage(WebDriver driver) {

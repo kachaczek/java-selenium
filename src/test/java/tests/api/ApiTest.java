@@ -14,6 +14,11 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
 
+/**
+ * ApiTest contains API tests using RestAssured.
+ * It validates HTTP status codes and response body for Bing, Reqres, and GraphQL endpoints.
+ * Allure annotations are used for reporting.
+ */
 public class ApiTest {
 
     @Test

@@ -8,6 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * BasePage is an abstract class providing common Selenium WebDriver utilities for page objects.
+ * It includes methods for finding elements by various selectors and waiting for page conditions.
+ */
 public abstract class BasePage {
     protected WebDriver driver;
 

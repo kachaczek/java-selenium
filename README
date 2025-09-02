@@ -1,41 +1,69 @@
-## Project Description
-  Selenium WebDriver is used to automated browser actions like opening the browser, finding the element of browser, clicking typying the text to search.
-  It is used to test real browser as Chrome.
-  This repository was created for learning purposes.
-  - SearchTest contains JUnit tests.
-  - SearchPage contains methods and shows Page Object Pattern in this repository
+# Java-Selenium Automated Testing
 
-## Project Description
-  Selenium WebDriver is used to automated browser actions like opening the browser,
-  finding the element of browser, clicking, typying the text to search.
-  It is used to test real browser as Chrome.
-  - BaseTest - setup and teardown
-  - SearchTest - JUnit tests: looking for "Selenium WebDriver" in few webbrowsers
-  - SeleniumDevTest - JUnit tests: testing Selenium Webdriver web
-  - ApiTest - some basic API tests
-  - BasePage - class with driver initialization and useful methods
-  - SearchPage - shows Page Object Pattern: locators, actions
-  - pom.xml is a configuration file used by Maven
+This repository contains automated UI and API tests for web applications using Selenium WebDriver, JUnit 5, Allure, and RestAssured.
+This repository was created for learning purposes.
 
-## Running the tests
-  1. Java JDK and Maven are installed
-    - Unix:
-      sudo apt install maven
-    - Windows (install eg. Chocolatey)
-      choco install mvn
-  2. Test can be run with command in directory which contains pom.xml file:
-      mvn test
-  3. Run test with choosing the Firefox browser:
-     mvn test -Dbrowser=firefox
-  4. Maven clean:
-      mvn clean test
-  5. Allure reports
-     Please run:
-     mvn clean test
-     target/allure-results directory will be created and later:
-     mvn allure:serve
-     Then go to Github Actions and choose some job, download some report on the
-     bottom of the page eg. allure-report-chrome, unzip and run server:
-     python -m http.server 8080
-     and later open in Firefox:
-     http://localhost:8080
+## Features
+
+- **UI Testing:** Automated browser tests for search engines and Selenium documentation.
+- **API Testing:** REST and GraphQL endpoint validation.
+- **Page Object Model:** Maintainable and reusable page classes.
+- **Cross-browser Support:** Chrome and Firefox (headless).
+- **Reporting:** Allure test reports with screenshots on failure.
+- **CI/CD:** GitHub Actions workflow for automated test execution.
+
+## Getting Started
+
+### Prerequisites
+
+- Java 21+
+- Maven 3.8+
+- Chrome and/or Firefox browsers installed
+
+### Setup
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/Java-Selenium.git
+   cd Java-Selenium
+   ```
+
+2. **Install dependencies:**
+   ```sh
+   mvn clean install
+   ```
+
+3. **Run tests:**
+   ```sh
+   mvn test
+   ```
+
+4. **Generate Allure report:**
+   ```sh
+   mvn clean test
+   mvn allure:serve
+   ```
+  Then go to Github Actions and choose some job, download some report on the
+  bottom of the page eg. allure-report-chrome, unzip and run server:
+  python -m http.server 8080
+  and later open in Firefox:
+  http://localhost:8080
+
+### Running Tests with Different Browsers
+
+Set the `browser` system property to `chrome` or `firefox`:
+```sh
+mvn test -Dbrowser=firefox
+```
+
+## Project Structure
+
+- `src/main/java/pages/` - Page Object classes
+- `src/test/java/tests/` - UI test classes
+- `src/test/java/tests/api/` - API test classes
+- `.github/workflows/selenium_test.yaml` - CI workflow, screenshots on failure
+- `pom.xml` - Maven configuration
+
+## Continuous Integration
+
+Tests run automatically on GitHub Actions for every push and pull request. Allure reports and screenshots are uploaded as artifacts.

@@ -1,4 +1,5 @@
 package tests;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,11 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import pages.SeleniumDevPage;
 
+/**
+ * SeleniumDevTest automates navigation and interaction with the Selenium documentation website.
+ * It verifies page navigation, dropdown lists, and getting started documentation using SeleniumDevPage.
+ * Allure annotations are used for reporting.
+ */
 public class SeleniumDevTest extends BaseTest {
     
     private SeleniumDevPage seleniumDevPage;
@@ -28,7 +34,10 @@ public class SeleniumDevTest extends BaseTest {
         seleniumDevPage.openPage();
         seleniumDevPage.clickDocumentation();
         seleniumDevPage.waitUntilLoaded("Selenium");
-        Assumptions.assumeTrue(true, "Selenium title");
+        String actualTitle = driver.getTitle();
+        boolean titleMatches = actualTitle.contains("Selenium");
+        Assertions.assertTrue(titleMatches, "Expected title not shown: " + actualTitle);
+        Assertions.assertFalse(actualTitle.contains("Selenium is not shown"));
     }
 
     @Test
@@ -40,7 +49,10 @@ public class SeleniumDevTest extends BaseTest {
         seleniumDevPage.openPage();
         seleniumDevPage.clickOnEvents();
         seleniumDevPage.waitUntilLoaded("Events | Selenium");
-        Assumptions.assumeTrue(true, "Events | Selenium");
+        String actualTitle = driver.getTitle();
+        boolean titleMatches = actualTitle.contains("Events | Selenium");
+        Assertions.assertTrue(titleMatches, "Expected title not shown: " + actualTitle);
+        Assertions.assertFalse(actualTitle.contains("Events of Selenium is not shown"));
     }
 
     @Test
@@ -52,6 +64,9 @@ public class SeleniumDevTest extends BaseTest {
         seleniumDevPage.openPage();
         seleniumDevPage.clickGettingStarted();
         seleniumDevPage.waitUntilLoaded ("Getting started");
-        Assumptions.assumeTrue(true, "Getting started");
+        String actualTitle = driver.getTitle();
+        boolean titleMatches = actualTitle.contains("Getting started");
+        Assertions.assertTrue(titleMatches, "Expected title not shown: " + actualTitle);
+        Assertions.assertFalse(actualTitle.contains("Getting started with Selenium"));
     }
 }
