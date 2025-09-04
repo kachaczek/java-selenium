@@ -67,3 +67,16 @@ mvn test -Dbrowser=firefox
 ## Continuous Integration
 
 Tests run automatically on GitHub Actions for every push and pull request. Allure reports and screenshots are uploaded as artifacts.
+
+## Performance Testing
+
+JMeter test plans are located in `src/test/jmeter/`.
+
+To run performance tests:
+```sh
+mvn jmeter:configure
+mvn clean verify
+mvn verify
+mvn jmeter:jmeter
+```
+Results are saved in `target/jmeter/results/`.

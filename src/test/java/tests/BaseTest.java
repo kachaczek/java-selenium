@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import pages.SearchPage;
 import pages.SeleniumDevPage;
@@ -30,6 +31,8 @@ public class BaseTest {
 
     @BeforeEach
     public void setup() {
+
+        WebDriverManager.chromedriver().setup();
 
         String browser = System.getProperty("browser", "chrome");
         if (browser.equalsIgnoreCase("firefox")) {

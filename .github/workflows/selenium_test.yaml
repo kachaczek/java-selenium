@@ -39,3 +39,6 @@ jobs:
         with:
           name: allure-report-${{ matrix.browser }}
           path: target/site/allure-maven-plugin
+
+      - name: Run JMeter performance tests
+        run: mvn jmeter:jmeter
